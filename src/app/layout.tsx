@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Header } from "../components/layout/Header";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,12 +13,20 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  locations,
 }: Readonly<{
   children: React.ReactNode;
+  locations: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Header />
+        <div className="grid grid-cols-12">
+          <main className="p-8 col-span-12">{children}</main>
+          {/* <div className="col-span-3">{locations}</div> */}
+        </div>
+      </body>
     </html>
   );
 }
