@@ -2,12 +2,18 @@
 
 import { Characteristic } from "@/components/pages/Charasteristic";
 import { BtnFavorite } from "@/components/ui/BtnFavorite";
+import GET_CHARACTER from "@/graphql/queries/getCharacter.query";
 import useFetch from "@/hooks/useFetch";
 import { ICharacter } from "@/types/types";
+import { useQuery } from "@apollo/client";
 
 export default function Details({ params }: { params: { id: string } }) {
   const { data, loading, error } = useFetch(`${params.id}`);
-  console.log(data);
+  // console.log(data);
+
+  // const { loading, error, data } = useQuery(GET_CHARACTER, {
+  //   variables: { id: params.id },
+  // });
 
   const character = data as ICharacter;
   const { gender, status, species, type } = character;
